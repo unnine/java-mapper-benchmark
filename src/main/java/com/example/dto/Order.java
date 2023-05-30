@@ -13,10 +13,6 @@ public record Order(
 ) {
 
     @Builder
-    public Order(Integer id, Payment payment, List<Item> items, LocalDateTime createdAt) {
-        this.id = id;
-        this.payment = payment;
-        this.items = items;
-        this.createdAt = createdAt;
+    public Order {
     }
 }

@@ -14,12 +14,6 @@ public record Member(
 ) {
 
     @Builder
-    public Member(String name, int age, Phone phone, Address address, List<Order> orders, String introduction) {
-        this.name = name;
-        this.age = age;
-        this.phone = phone;
-        this.address = address;
-        this.orders = orders;
-        this.introduction = introduction;
+    public Member {
     }
 }
