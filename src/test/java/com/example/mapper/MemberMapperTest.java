@@ -3,8 +3,11 @@ package com.example.mapper;
 import com.example.dto.Member;
 import com.example.dto.MemberDto;
 import com.example.dto.MemberFactory;
+import com.example.mapper.BaseMapper;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
@@ -27,12 +30,6 @@ public abstract class MemberMapperTest {
     }
 
     @Benchmark
-    public void singleMapping(Blackhole blackhole) {
-        MemberDto dto = mapper().map(this.member);
-        blackhole.consume(dto);
-    }
-
-    @Benchmark
     public void multiMapping(Blackhole blackhole) {
         List<MemberDto> dtoList = mapper().map(this.memberList);
         blackhole.consume(dtoList);
@@ -40,11 +37,18 @@ public abstract class MemberMapperTest {
 
     public abstract BaseMapper<Member, MemberDto> mapper();
 
-    public static Options createOptions(String className) {
+    public static void run(String className) {
+        try {
+            new Runner(createOptions(className)).run();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static Options createOptions(String className) {
         return new OptionsBuilder()
                 .include(className)
-                .warmupIterations(10)
-                .measurementIterations(1)
+                .measurementIterations(10)
                 .forks(1)
                 .build();
     }
