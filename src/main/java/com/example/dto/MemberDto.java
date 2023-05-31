@@ -7,19 +7,8 @@ public class MemberDto {
     private int age;
     private Phone phone;
     private Address address;
-    private List<Order> orders;
+    private List<OrderDto> orders;
     private String introduction;
-
-    public static MemberDto from(Member member) {
-        MemberDto dto = new MemberDto();
-        dto.setAddress(member.getAddress());
-        dto.setAge(member.getAge());
-        dto.setIntroduction(member.getIntroduction());
-        dto.setName(member.getName());
-        dto.setOrders(member.getOrders());
-        dto.setPhone(member.getPhone());
-        return dto;
-    }
 
     public String getName() {
         return name;
@@ -53,11 +42,11 @@ public class MemberDto {
         this.address = address;
     }
 
-    public List<Order> getOrders() {
+    public List<OrderDto> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<OrderDto> orders) {
         this.orders = orders;
     }
 

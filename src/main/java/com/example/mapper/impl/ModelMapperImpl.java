@@ -5,9 +5,6 @@ import com.example.dto.MemberDto;
 import com.example.mapper.MemberMapper;
 import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ModelMapperImpl implements MemberMapper {
 
     private final ModelMapper mapper = new ModelMapper();
