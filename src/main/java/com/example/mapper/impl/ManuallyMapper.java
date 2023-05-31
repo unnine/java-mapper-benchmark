@@ -10,11 +10,6 @@ public class ManuallyMapper implements MemberMapper {
 
     @Override
     public MemberDto map(Member member) {
-        return null;
-    }
-
-    @Override
-    public List<MemberDto> map(List<Member> e) {
-        return null;
+        return MemberDto.from(member);
     }
 }

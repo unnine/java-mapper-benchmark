@@ -6,9 +6,20 @@ public class MemberDto {
     private String name;
     private int age;
     private Phone phone;
-    private Item address;
+    private Address address;
     private List<Order> orders;
     private String introduction;
+
+    public static MemberDto from(Member member) {
+        MemberDto dto = new MemberDto();
+        dto.setAddress(member.getAddress());
+        dto.setAge(member.getAge());
+        dto.setIntroduction(member.getIntroduction());
+        dto.setName(member.getName());
+        dto.setOrders(member.getOrders());
+        dto.setPhone(member.getPhone());
+        return dto;
+    }
 
     public String getName() {
         return name;
@@ -34,11 +45,11 @@ public class MemberDto {
         this.phone = phone;
     }
 
-    public Item getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Item address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
