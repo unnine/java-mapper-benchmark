@@ -6,9 +6,11 @@ import com.example.mapper.impl.MapStructMapper;
 
 public class MapStructMapperTest extends MemberMapperTest {
 
+    private final BaseMapper<Member, MemberDto> mapper = MapStructMapper.MAPPER;
+
     @Override
     public BaseMapper<Member, MemberDto> mapper() {
-        return MapStructMapper.MAPPER;
+        return mapper;
     }
 
     public static void main(String[] args) {

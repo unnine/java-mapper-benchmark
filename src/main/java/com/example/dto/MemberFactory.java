@@ -20,14 +20,14 @@ public class MemberFactory {
         Address address = new Address(randomString(), randomString(), randomString());
         List<Order> orders = createOrders(20);
 
-        return Member.builder()
-                .name(randomString())
-                .age(20)
-                .phone(phone)
-                .address(address)
-                .orders(orders)
-                .introduction(randomString())
-                .build();
+        Member member = new Member();
+        member.setName(randomString());
+        member.setAge(20);
+        member.setPhone(phone);
+        member.setAddress(address);
+        member.setOrders(orders);
+        member.setIntroduction(randomString());
+        return member;
     }
 
     private List<Order> createOrders(int size) {
@@ -36,12 +36,11 @@ public class MemberFactory {
 
         for(int i = 0; i < size; ++i) {
             Payment payment = new Payment(i, 3000, LocalDateTime.now());
-            Order order = Order.builder()
-                    .id(i)
-                    .payment(payment)
-                    .items(items)
-                    .createdAt(LocalDateTime.now())
-                    .build();
+            Order order = new Order();
+            order.setId(i);
+            order.setPayment(payment);
+            order.setItems(items);
+            order.setCreatedAt(LocalDateTime.now());
             result.add(order);
         }
         return result;
@@ -51,13 +50,12 @@ public class MemberFactory {
         List<Item> result = new ArrayList<>(size);
         Item item;
         for(int i = 0; i < size; ++i) {
-            item = Item.builder()
-                    .id(i)
-                    .name(randomString())
-                    .price(1000)
-                    .introduction(randomString())
-                    .createdAt(LocalDateTime.now())
-                    .build();
+            item = new Item();
+            item.setId(i);
+            item.setName(randomString());
+            item.setPrice(1000);
+            item.setIntroduction(randomString());
+            item.setCreatedAt(LocalDateTime.now());
             result.add(item);
         }
         return result;

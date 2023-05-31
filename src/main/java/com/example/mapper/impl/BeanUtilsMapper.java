@@ -15,12 +15,4 @@ public class BeanUtilsMapper implements MemberMapper {
         BeanUtils.copyProperties(member, dto);
         return dto;
     }
-
-    public List<MemberDto> map(List<Member> members) {
-        List<MemberDto> result = new ArrayList<>(members.size());
-        for (Member member : members) {
-            result.add(map(member));
-        }
-        return result;
-    }
 }
