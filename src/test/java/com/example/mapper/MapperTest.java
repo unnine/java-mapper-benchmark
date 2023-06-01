@@ -3,7 +3,6 @@ package com.example.mapper;
 import com.example.dto.Member;
 import com.example.dto.MemberDto;
 import com.example.dto.MemberFactory;
-import com.example.mapper.impl.BeanUtilsMapper;
 import com.example.mapper.impl.ManuallyMapper;
 import com.example.mapper.impl.MapStructMapper;
 import com.example.mapper.impl.ModelMapperImpl;
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Thread)
-@BenchmarkMode(Mode.AverageTime)
+@BenchmarkMode(Mode.SampleTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class MapperTest {
 
@@ -26,7 +25,6 @@ public class MapperTest {
     protected List<Member> memberList;
 
     private final ManuallyMapper manuallyMapper = new ManuallyMapper();
-    private final BeanUtilsMapper beanUtilsMapper = new BeanUtilsMapper();
     private final ModelMapperImpl modelMapper = new ModelMapperImpl();
     private final MapStructMapper mapStructMapper = MapStructMapper.MAPPER;
 
@@ -40,12 +38,6 @@ public class MapperTest {
     @Benchmark
     public void manually(Blackhole blackhole) {
         List<MemberDto> dtoList = manuallyMapper.map(this.memberList);
-        blackhole.consume(dtoList);
-    }
-
-    @Benchmark
-    public void beanUtils(Blackhole blackhole) {
-        List<MemberDto> dtoList = beanUtilsMapper.map(this.memberList);
         blackhole.consume(dtoList);
     }
 

@@ -58,4 +58,15 @@ public class ItemDto {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    @Override
+    public String toString() {
+        return "ItemDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", introduction='" + introduction + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

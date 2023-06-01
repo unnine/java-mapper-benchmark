@@ -53,4 +53,14 @@ public class OrderDto {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDto{" +
+                "id=" + id +
+                ", payment=" + payment +
+                ", items=" + items +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }
