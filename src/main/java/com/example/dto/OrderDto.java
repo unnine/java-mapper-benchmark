@@ -1,6 +1,7 @@
 package com.example.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDto {
@@ -10,9 +11,10 @@ public class OrderDto {
     private LocalDateTime createdAt;
 
     public static OrderDto from(Order order) {
-        List<ItemDto> items = order.getItems().stream()
-                .map(ItemDto::from)
-                .toList();
+        List<ItemDto> items = new ArrayList<>(order.getItems().size());
+        for (Item item : order.getItems()) {
+            items.add(ItemDto.from(item));
+        }
 
         OrderDto dto = new OrderDto();
         dto.setId(order.getId());

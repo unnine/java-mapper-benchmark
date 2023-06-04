@@ -18,7 +18,7 @@ public class MemberFactory {
     public Member create() {
         Phone phone = new Phone(randomString(), randomString(), randomString());
         Address address = new Address(randomString(), randomString(), randomString());
-        List<Order> orders = createOrders(20);
+        List<Order> orders = createOrders(10);
 
         Member member = new Member();
         member.setName(randomString());

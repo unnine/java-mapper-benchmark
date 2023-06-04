@@ -17,11 +17,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Thread)
-@BenchmarkMode(Mode.SampleTime)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@BenchmarkMode(Mode.All)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class MapperTest {
 
-    protected Member member;
     protected List<Member> memberList;
 
     private final ManuallyMapper manuallyMapper = new ManuallyMapper();
@@ -31,8 +30,7 @@ public class MapperTest {
     @Setup
     public void setup() {
         MemberFactory memberFactory = new MemberFactory();
-        this.member = memberFactory.create();
-        this.memberList = memberFactory.createList(100000);
+        this.memberList = memberFactory.createList(100);
     }
 
     @Benchmark
@@ -47,6 +45,7 @@ public class MapperTest {
         blackhole.consume(dtoList);
     }
 
+
     @Benchmark
     public void mapStruct(Blackhole blackhole) {
         List<MemberDto> dtoList = mapStructMapper.map(this.memberList);
@@ -56,8 +55,8 @@ public class MapperTest {
     public static void main(String[] args) throws RunnerException {
         Options option = new OptionsBuilder()
                 .include(MapperTest.class.getSimpleName())
-                .warmupIterations(5)
-                .measurementIterations(10)
+                .warmupIterations(10)
+                .measurementIterations(20)
                 .forks(1)
                 .build();
         new Runner(option).run();
